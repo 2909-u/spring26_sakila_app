@@ -1,10 +1,7 @@
 name: CI/CD Pipeline
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   # --- CI JOB: Build and Test ---
@@ -20,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: "3.9"
 
       - name: Install dependencies
         run: |
@@ -38,7 +35,7 @@ jobs:
 
   # --- CD JOB: Docker Build and Push ---
   build-and-push:
-    needs: build-and-test  # This ensures Docker only builds if tests pass
+    needs: build-and-test # This ensures Docker only builds if tests pass
     runs-on: ubuntu-latest
     # Only push to Docker Hub on actual pushes to main, not on Pull Requests
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
