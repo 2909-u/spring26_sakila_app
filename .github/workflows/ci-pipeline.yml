@@ -52,10 +52,8 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Download and import Sakila database
+      - name: Import Sakila database
         run: |
-          wget https://downloads.mysql.com/docs/sakila-db.zip
-          unzip sakila-db.zip
           mysql -h 127.0.0.1 -uroot -padmin sakila < sakila-db/sakila-schema.sql
           mysql -h 127.0.0.1 -uroot -padmin sakila < sakila-db/sakila-data.sql
       - name: Run tests
