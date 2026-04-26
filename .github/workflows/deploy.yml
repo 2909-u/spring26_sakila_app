@@ -34,7 +34,7 @@ jobs:
           echo "- **Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Time:** $(date)" >> $GITHUB_STEP_SUMMARY
       - name: Notify
-        run: echo "Slack notification: Deployment to staging successful"
+        run: echo 'Slack notification: Deployment to staging successful'
 
   deploy-production:
     runs-on: ubuntu-latest
